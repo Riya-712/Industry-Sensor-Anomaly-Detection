@@ -76,7 +76,7 @@ PR-AUC and registers it in the MLflow model registry. Browse with `mlflow ui --b
 ## Streamlit dashboard
 Overview - Sensor Monitoring - Anomaly Detection (CSV upload, validation, score + threshold chart, download) -
 Model Evaluation - Maintenance Insights (risk ranking and decision-support recommendations; not diagnoses).
-_<add screenshots to docs/ and link them here>_
+
 
 ## Limitations
 - One week of (apparently simulated) data, 5 machines, 20 test episodes; one split and one seed - no confidence intervals.
