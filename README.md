@@ -1,6 +1,6 @@
 # Industrial Sensor Anomaly Detection & Predictive Maintenance
 
-An end-to-end, reproducible machine-learning project that detects abnormal operating conditions in
+An end-to-end machine-learning project that detects abnormal operating conditions in
 multivariate industrial sensor data. It compares an unsupervised baseline (Isolation Forest), an
 unsupervised deep-learning model (PyTorch Autoencoder) and a supervised benchmark (Random Forest),
 tracks experiments with MLflow, and serves results through a Streamlit dashboard.
@@ -17,11 +17,6 @@ episode-level detection, detection delay).
 ## Dataset
 - 50,000 readings, 5 machines (EQ-001..EQ-005), 1-minute sampling over ~7 days, 11 sensors + context columns.
 - Binary label `is_anomaly` (4.6% positive) with a fault category in `anomaly_type`
-  (e.g. `sensor_malfunction`, `pressure_leak`, `bearing_degradation`, `thermal_runaway`).
-- **Source:** _<add the dataset name/URL and licence here>_.
-- The dataset has no electrical-current channel; `power_consumption_kw` is used as power, not current.
-- The data shows features of simulated data (identical linear trends on every machine, label-derived columns),
-  so results should not be assumed to transfer to a real plant.
 
 ## Architecture
 ```
@@ -82,21 +77,6 @@ PR-AUC and registers it in the MLflow model registry. Browse with `mlflow ui --b
 Overview - Sensor Monitoring - Anomaly Detection (CSV upload, validation, score + threshold chart, download) -
 Model Evaluation - Maintenance Insights (risk ranking and decision-support recommendations; not diagnoses).
 _<add screenshots to docs/ and link them here>_
-
-## Install & run
-```bash
-python -m venv .venv && source .venv/bin/activate     # Windows: .venv\Scripts\activate
-pip install -r requirements.txt
-# place the dataset at data/raw/data.csv
-python -m src.build_dataset
-python -m src.train_isolation_forest
-python -m src.train_random_forest
-# Autoencoder: run notebooks/03_autoencoder_colab.ipynb in Colab, copy the artifacts back (see RUN_ORDER.md)
-python -m src.evaluate
-python -m src.register_models
-python -m pytest -q
-streamlit run app/streamlit_app.py
-```
 
 ## Limitations
 - One week of (apparently simulated) data, 5 machines, 20 test episodes; one split and one seed - no confidence intervals.
